@@ -6,15 +6,29 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
 
-  const _onClick = () => {
+  const _onClick = async () => {
     dispatch({ type: "movie/request" });
-    fetch(`https://www.omdbapi.com/?s=${currentValue}&apikey=4a3b711b`).then(
-      result => {
-        result.json().then(res => {
-          dispatch({ type: "movie/success", data: res.Search });
-        });
-      }
-    );
+    try {
+      const result = await fetch(
+        `https://www.omdbapi.com/?s=${currentValue}&apikey=4a3b711b`
+      );
+      const res = await result.json();
+
+      dispatch({ type: "movie/success", data: res.Search });
+    } catch (error) {
+      alert("Opps!");
+    }
+
+    //// Promise yontemi
+    // fetch(`https://www.omdbapi.com/?s=${currentValue}&apikey=4a3b711b`).then(
+    //   result => {
+    //     result.json().then(res => {
+    //       dispatch({ type: "movie/success", data: res.Search });
+    //     });
+    //   }
+    // ).catch (error) {
+    //   alert("Opps!");
+    // };
   };
 
   const _onChange = event => {
@@ -54,7 +68,6 @@ const SearchBar = () => {
 //     );
 //   }
 // }
-
 
 // export default connect()(SearchBar);
 export default SearchBar;

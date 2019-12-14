@@ -1,6 +1,7 @@
 const initialState = {
   movies: [],
-  loading: false
+  loading: false,
+  request: false,
 };
 
 export default (state = initialState, action) => {
