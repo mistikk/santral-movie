@@ -4,14 +4,18 @@ const SearchBar = () => {
   const [currentValue, setCurrentValue] = useState("");
 
   const _onClick = () => {
-    console.log("currentValue Function Component :", currentValue);
+    fetch("https://www.omdbapi.com/?s=man&apikey=4a3b711b").then(result => {
+      result.json().then(res => {
+        console.log("currentValue Function Component :", res);
+      });
+    });
   };
 
   const _onChange = event => {
     setCurrentValue(event.target.value);
   };
   return (
-    <Fragment>
+    <Fragment>  
       <input onChange={_onChange} />
       <button onClick={_onClick}>Search</button>
     </Fragment>
