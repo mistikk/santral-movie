@@ -7,12 +7,14 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const _onClick = () => {
-    fetch("https://www.omdbapi.com/?s=man&apikey=4a3b711b").then(result => {
-      result.json().then(res => {
-        dispatch({ type: "movie/request" });
-        console.log("currentValue Function Component :", res);
-      });
-    });
+    dispatch({ type: "movie/request" });
+    fetch(`https://www.omdbapi.com/?s=${currentValue}&apikey=4a3b711b`).then(
+      result => {
+        result.json().then(res => {
+          dispatch({ type: "movie/success", data: res.Search });
+        });
+      }
+    );
   };
 
   const _onChange = event => {
@@ -53,4 +55,6 @@ const SearchBar = () => {
 //   }
 // }
 
+
+// export default connect()(SearchBar);
 export default SearchBar;
