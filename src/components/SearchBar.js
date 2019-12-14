@@ -1,11 +1,15 @@
 import React, { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
   const [currentValue, setCurrentValue] = useState("");
 
+  const dispatch = useDispatch();
+
   const _onClick = () => {
     fetch("https://www.omdbapi.com/?s=man&apikey=4a3b711b").then(result => {
       result.json().then(res => {
+        dispatch({ type: "movie/request" });
         console.log("currentValue Function Component :", res);
       });
     });
@@ -15,7 +19,7 @@ const SearchBar = () => {
     setCurrentValue(event.target.value);
   };
   return (
-    <Fragment>  
+    <Fragment>
       <input onChange={_onChange} />
       <button onClick={_onClick}>Search</button>
     </Fragment>
