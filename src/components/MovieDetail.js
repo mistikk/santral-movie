@@ -3,8 +3,9 @@ import { connect, useSelector } from "react-redux";
 import { withRouter, useHistory, Link } from "react-router-dom";
 
 const MovieDetail = ({ location }) => {
+  console.log("location :", location);
   const movieList = useSelector(state => state.app.movies);
-  //   const history = usexHistory();
+  //   const history = useHistory();
 
   //   const _onClick = () => {
   //     history.push('/');

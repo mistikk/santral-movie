@@ -18,9 +18,7 @@ function App() {
             <SearchBar />
             <MovieList />
           </Route>
-          <Route path="/detay">
-            <MovieDetail />
-          </Route>
+          <Route path="/detay" component={MovieDetail} />
         </Switch>
       </div>
     </Router>
